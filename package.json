@@ -1,0 +1,43 @@
+{
+  "name": "grunt-gjslint",
+  "description": "Validate files with Google Linter.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jmendiara/grunt-gjslint",
+  "author": {
+    "name": "Javier Mendiara Cañardo",
+    "email": "jmendiara@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmendiara/grunt-gjslint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmendiara/grunt-gjslint/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jmendiara/grunt-gjslint/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt": "~0.4.1",
+    "closure-linter-wrapper": "~0.2.0"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
