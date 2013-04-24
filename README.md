@@ -32,8 +32,7 @@ grunt.initConfig({
       ],
       reporter: {
         name: 'console'
-      },
-      force: true
+      }
     },
     all: {
       src: '<%= jshint.all %>'
@@ -45,14 +44,14 @@ grunt.initConfig({
 As this is a Multitask, you can specify several targets to be called sharing the same root options
 
 ### Documentation
-grunt-gjslint uses (node-closure-linter-wrapper)[https://github.com/jmendiara/node-closure-linter-wrapper]
+grunt-gjslint uses [node-closure-linter-wrapper](https://github.com/jmendiara/node-closure-linter-wrapper)
 to lint files, and has the --ignore_error custom flag to allow soft linting.
 
-Please, refer to (node-closure-linter-wrapper documentation)[https://github.com/jmendiara/node-closure-linter-wrapper]
+Please, refer to [node-closure-linter-wrapper documentation](https://github.com/jmendiara/node-closure-linter-wrapper)
 for flags and reporter reference.
 
 `options.force` flag is a custom option that when disabled, will not fail the grunt task when python is not installed on
-the computer
+the computer. It defaults to `true`
 
 
 ### Usage Examples
@@ -88,4 +87,5 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-* v0.1.0
+* v0.1.0 
+  * First version
