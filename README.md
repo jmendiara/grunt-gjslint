@@ -28,7 +28,7 @@ grunt.initConfig({
   gjslint: {
     options: {
       flags: [
-        '--ignore_errors 220' //ignore error code 220 from gjslint
+        '--disable 220' //ignore error code 220 from gjslint
       ],
       reporter: {
         name: 'console'
@@ -45,7 +45,7 @@ As this is a Multitask, you can specify several targets to be called sharing the
 
 ### Documentation
 grunt-gjslint uses [node-closure-linter-wrapper](https://github.com/jmendiara/node-closure-linter-wrapper)
-to lint files, and has the --ignore_error custom flag to allow soft linting.
+to lint files
 
 Please, refer to [node-closure-linter-wrapper documentation](https://github.com/jmendiara/node-closure-linter-wrapper)
 for flags and reporter reference.
