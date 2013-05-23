@@ -35,7 +35,7 @@ module.exports = function(grunt) {
           src: [src]
         }, function(err, res) {
           if (err) {
-            if (err.code === 1 && !options.force){
+            if (err.code === 1 && !options.force) {
               done();
             } else {
               done(false);

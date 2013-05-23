@@ -1,6 +1,6 @@
 {
   "name": "grunt-gjslint",
-  "description": "Validate files with Google Linter.",
+  "description": "Validate files with Google Closure Linter.",
   "version": "0.1.0",
   "homepage": "https://github.com/jmendiara/grunt-gjslint",
   "author": {
@@ -31,15 +31,13 @@
     "closure-linter-wrapper": "~0.2.0"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-jshint": "~0.5.4",
     "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-nodeunit": "~0.2.0",
     "grunt": "~0.4.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
-  "keywords": [
-    "gruntplugin"
-  ]
+  "keywords": ["gjslint", "closure", "linter"]
 }
