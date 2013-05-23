@@ -27,7 +27,7 @@ exports.gjslint = {
     // setup here if necessary
     done();
   },
-  default_options: function(test) {
+  defaultOptions: function(test) {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/default_options');
@@ -37,7 +37,7 @@ exports.gjslint = {
 
     test.done();
   },
-  custom_options: function(test) {
+  customOptions: function(test) {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/custom_options');
