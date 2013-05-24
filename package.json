@@ -40,10 +40,18 @@
     "grunt-contrib-jshint": "~0.5.4",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-release": "~0.3.3"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
-  "keywords": ["gjslint", "closure", "linter", "closure-linter", "gruntplugin", "closure-linter-wrapper"]
+  "keywords": [
+    "gjslint",
+    "closure",
+    "linter",
+    "closure-linter",
+    "gruntplugin",
+    "closure-linter-wrapper"
+  ]
 }
