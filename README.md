@@ -47,12 +47,33 @@ As this is a Multitask, you can specify several targets to be called sharing the
 grunt-gjslint uses [node-closure-linter-wrapper](https://github.com/jmendiara/node-closure-linter-wrapper)
 to lint files
 
+### Options
+
+#### flags
+Type: `Array` Default value: `[]`
+
 Please, refer to [node-closure-linter-wrapper documentation](https://github.com/jmendiara/node-closure-linter-wrapper)
-for flags and reporter reference.
+for flags reference.
 
-`options.force` flag is a custom option that when disabled, will not fail the grunt task when python is not installed on
-the computer. It defaults to `true`
+#### reporter
+Type: `Object` Default value: `{}`
 
+Please, refer to [node-closure-linter-wrapper documentation](https://github.com/jmendiara/node-closure-linter-wrapper)
+for reporter reference.
+
+#### reporterOutput
+`options.reporterOutput`
+
+Type: `String` Default value: null
+
+Specify a filepath to write the results of a reporter into a file instead of printed to stdout.
+
+#### force
+Type: `Boolean` Default value: `false`
+
+Set `force` to `true` if:
+- You want gsjlint to report errors but not fail the task.
+- You want gsjlint not to fail the task when python is not installed on the computer.
 
 ### Usage Examples
 
@@ -64,7 +85,7 @@ grunt.initConfig({
   gjslint: {
     options: {
       flags: [
-          '--flagfile .gjslintrc' //use flag file
+        '--flagfile .gjslintrc' //use flag file
       ],
       reporter: {
         name: 'console' //report to console
@@ -81,11 +102,32 @@ grunt.initConfig({
 })
 ```
 
+Use `reporterOutput` option if you want to write the output into a file instead of printing it in the console.
+
+```js
+grunt.initConfig({
+  gjslint: {
+    options: {
+      flags: [
+        '--flagfile .gjslintrc' //use flag file
+      ],
+      reporter: {
+        name: 'gjslint_xml'
+      },
+      reporterOutput: 'gjslint_report.xml', // save the output to this file
+      force: true //don't fail the task
+    },
+    lib: {
+      src: ['lib/module/**/*.js', 'lib/foo.js'],
+    }
+  }
+})
+```
 
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-* v0.1.0 
+* v0.1.0
   * First version
