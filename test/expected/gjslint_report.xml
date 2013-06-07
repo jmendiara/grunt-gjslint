@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jslint>
+	<file name="test.js">
+		<issue line="1" reason="Extra space after &quot;{&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;,&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;,&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;,&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;;&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;{&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;{&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;;&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;{&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;;&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;}&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;}&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;{&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;{&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;;&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;{&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;;&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;}&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;}&quot;" severity="1" />
+		<issue line="1" reason="Extra space after &quot;}&quot;" severity="1" />
+		<issue line="1" reason="Line too long (469 characters)." severity="110" />
+	</file>
+</jslint>

@@ -30,17 +30,29 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     gjslint: {
-      options: {
-        flags: [
-          '--flagfile .gjslintrc'
-        ],
-        reporter: {
-          name: 'console'
-        },
-        force: true
-      },
       all: {
+        options: {
+          flags: [
+            '--flagfile .gjslintrc'
+          ],
+          reporter: {
+            name: 'console'
+          }
+        },
         src: '<%= jshint.all %>'
+      },
+      testReporterOutput: {
+        options: {
+          flags: [
+            '--flagfile .gjslintrc'
+          ],
+          reporter: {
+            name: 'gjslint_xml'
+          },
+          reporterOutput: 'tmp/gjslint_report.xml',
+          force: true
+        },
+        src: ['test/fixtures/test.js']
       }
     },
 
@@ -62,7 +74,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'gjslint']);
+  grunt.registerTask('test', ['clean', 'gjslint', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
