@@ -1,7 +1,7 @@
 {
   "name": "grunt-gjslint",
   "description": "Validate files with Google Closure Linter.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/jmendiara/grunt-gjslint",
   "author": {
     "name": "Javier Mendiara Cañardo",
