@@ -3,7 +3,7 @@
 > Validate files with Google Linter.
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1` and *just* python installed
+This plugin requires Node `~0.8.19` (for managing [peerDependencies](http://blog.nodejs.org/2013/02/07/peer-dependencies/)), Grunt `~0.4.1` and *just* python installed.
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
