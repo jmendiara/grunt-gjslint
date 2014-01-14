@@ -51,15 +51,22 @@ module.exports = function(grunt) {
   function expandFiles(files) {
     var ret;
     if (files) {
-      ret = grunt.file.expand(files).filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).join(' ');
+      ret = grunt.file.expand(files)
+        .filter(function(filepath) {
+          // Warn on and remove invalid source files (if nonull was set).
+          if (!grunt.file.exists(filepath)) {
+            grunt.log.warn('Source file "' + filepath + '" not found.');
+            return false;
+          } else {
+            return true;
+          }
+        })
+        .map(function(filePath) {
+          // Wrap the path between double quotes when whitespaces found.
+          return (filePath.indexOf(' ') === -1) ? filePath :
+            ['"', filePath, '"'].join('');
+        })
+        .join(' ');
     }
     return ret;
   }
