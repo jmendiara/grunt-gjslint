@@ -95,3 +95,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 * v0.1.0 
   * First version
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jmendiara/grunt-gjslint/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
