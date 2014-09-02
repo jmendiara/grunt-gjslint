@@ -43,6 +43,20 @@ module.exports = function(grunt) {
         src: '<%= jshint.all %>'
       }
     },
+    fixjsstyle: {
+      options: {
+        flags: [
+          '--flagfile .fixjsstylerc'
+        ],
+        reporter: {
+          name: 'console'
+        },
+        force: true
+      },
+      all: {
+        src: '<%= jshint.all %>'
+      }
+    },
 
     // Unit tests.
     nodeunit: {

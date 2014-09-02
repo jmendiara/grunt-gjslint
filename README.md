@@ -17,15 +17,28 @@ One the plugin has been installed, it may be enabled inside your Gruntfile with 
 grunt.loadNpmTasks('grunt-gjslint');
 ```
 
-## The "gjslint" task
-Run this task with the `grunt gjslint` command.
+## The "gjslint" and "fixjsstyle" tasks
+Run this tasks with the `grunt gjslint` or `grunt fixjsstyle` commands.
 
 ### Overview
-In your project's Gruntfile, add a section named `gjslint` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add sections named `gjslint` and `fixjsstyle` to the data object passed into `grunt.initConfig()`. Some of the flags passed to gjslint don't work with fixjsstyle.
 
 ```js
 grunt.initConfig({
   gjslint: {
+    options: {
+      flags: [
+        '--disable 220' //ignore error code 220 from gjslint
+      ],
+      reporter: {
+        name: 'console'
+      }
+    },
+    all: {
+      src: '<%= jshint.all %>'
+    }
+  },
+  fixjstyle: {
     options: {
       flags: [
         '--disable 220' //ignore error code 220 from gjslint
@@ -77,6 +90,23 @@ grunt.initConfig({
     test: {
       src: ['test/*.js'],
     }
+  },
+  fixjstyle: {
+    options: {
+      flags: [
+          '--flagfile .fixjssstylerc' //use flag file
+      ],
+      reporter: {
+        name: 'console' //report to console
+      },
+      force: false //don't fail if python is not installed on the computer
+    },
+    lib: {
+      src: ['lib/module/**/*.js', 'lib/foo.js'],
+    },
+    test: {
+      src: ['test/*.js'],
+    }
   }
 })
 ```
@@ -87,7 +117,10 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-* v0.1.4 
+* v0.1.5
+  * added fixjsstyle task
+
+* v0.1.4
   * bug fixing in filenames with whitespaces. Thanks to @moelders
 
 * v0.1.3 
