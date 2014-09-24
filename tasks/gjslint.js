@@ -9,7 +9,7 @@
 'use strict';
 
 var gjslint = require('closure-linter-wrapper').gjslint;
-
+var fixjsstyle = require('closure-linter-wrapper').fixjsstyle;
 
 module.exports = function(grunt) {
 
@@ -30,6 +30,38 @@ module.exports = function(grunt) {
         var src = expandFiles(f.src);
 
         gjslint({
+          flags: options.flags,
+          reporter: options.reporter,
+          src: [src]
+        }, function(err, res) {
+          if (err) {
+            if (err.code === 1 && !options.force) {
+              done();
+            } else {
+              done(false);
+            }
+          } else {
+            done();
+          }
+        });
+      });
+    }
+  );
+
+  grunt.registerMultiTask('fixjsstyle', 'Fix files with Google Linter',
+    function() {
+      var done = this.async();
+      var options = this.options({
+        force: true,
+        reporter: {},
+        flags: []
+      });
+
+      // Iterate over all specified file groups.
+      this.files.forEach(function(f) {
+        var src = expandFiles(f.src);
+
+        fixjsstyle({
           flags: options.flags,
           reporter: options.reporter,
           src: [src]

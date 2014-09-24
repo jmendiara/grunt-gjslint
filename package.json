@@ -1,7 +1,7 @@
 {
   "name": "grunt-gjslint",
   "description": "Validate files with Google Closure Linter.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "homepage": "https://github.com/jmendiara/grunt-gjslint",
   "author": {
     "name": "Javier Mendiara Cañardo",
@@ -18,6 +18,10 @@
     {
       "name": "Jaime Pastor Pueyo",
       "email": "jppueyo@tid.es"
+    },
+    {
+      "name": "Sebastian Poręba",
+      "email": "sebastian@smashinglabs.pl"
     }
   ],
   "repository": {
@@ -53,6 +57,7 @@
   },
   "keywords": [
     "gjslint",
+    "fixjsstyle",
     "closure",
     "linter",
     "closure-linter",
