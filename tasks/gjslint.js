@@ -27,23 +27,32 @@ module.exports = function(grunt) {
 
       // Iterate over all specified file groups.
       this.files.forEach(function(f) {
-        var src = expandFiles(f.src);
-
-        gjslint({
-          flags: options.flags,
-          reporter: options.reporter,
-          src: [src]
-        }, function(err, res) {
-          if (err) {
-            if (err.code === 1 && !options.force) {
-              done();
-            } else {
-              done(false);
-            }
-          } else {
-            done();
+        var srcs = expandFiles(f.src);
+        var doneCount = 0;
+        var isDone = true;
+        
+        var doneCheck = function(gjsDone) {
+          if (!gjsDone) {
+            isDone = false;
           }
-        });
+          
+          if (++doneCount === srcs.length) {
+            done(isDone);
+          }
+        };
+        
+        var callback = function(err, res) {
+          var gjsDone = !(err && (err.code !== 1 || options.force));
+          doneCheck(gjsDone);
+        };
+
+        for (var i = 0, len = srcs.length; i < len; ++i) {
+          gjslint({
+            flags: options.flags,
+            reporter: options.reporter,
+            src: [srcs[i]]
+          }, callback);
+        }
       });
     }
   );
@@ -59,31 +68,40 @@ module.exports = function(grunt) {
 
       // Iterate over all specified file groups.
       this.files.forEach(function(f) {
-        var src = expandFiles(f.src);
-
-        fixjsstyle({
-          flags: options.flags,
-          reporter: options.reporter,
-          src: [src]
-        }, function(err, res) {
-          if (err) {
-            if (err.code === 1 && !options.force) {
-              done();
-            } else {
-              done(false);
-            }
-          } else {
-            done();
+        var srcs = expandFiles(f.src);
+        var doneCount = 0;
+        var isDone = true;
+        
+        var doneCheck = function(gjsDone) {
+          if (!gjsDone) {
+            isDone = false;
           }
-        });
+          
+          if (++doneCount === srcs.length) {
+             done(isDone);
+          }
+        };
+        
+        var callback = function(err, res) {
+          var gjsDone = !(err && (err.code !== 1 || options.force));
+          doneCheck(gjsDone);
+        };
+
+        for (var i = 0, len = srcs.length; i < len; ++i) {
+          fixjsstyle({
+            flags: options.flags,
+            reporter: options.reporter,
+            src: [srcs[i]]
+          }, callback);
+        }
       });
     }
   );
 
   function expandFiles(files) {
-    var ret;
+    var retArray = [];
     if (files) {
-      ret = grunt.file.expand(files)
+      var allFiles = grunt.file.expand(files)
         .filter(function(filepath) {
           // Warn on and remove invalid source files (if nonull was set).
           if (!grunt.file.exists(filepath)) {
@@ -97,9 +115,20 @@ module.exports = function(grunt) {
           // Wrap the path between double quotes when whitespaces found.
           return (filePath.indexOf(' ') === -1) ? filePath :
             ['"', filePath, '"'].join('');
-        })
-        .join(' ');
+        });
+      // command line will be too long in Windows
+      // http://support.microsoft.com/kb/830473.
+      for (var i = 0, lineLen = 0; i < allFiles.length; ++i) {
+        var file = allFiles[i];
+        lineLen += file.length + 1;
+        if (lineLen > 7500) {
+          retArray.push(allFiles.splice(0, i).join(' '));
+          i = -1;
+          lineLen = 0;
+        }
+      }
+      retArray.push(allFiles.join(' '));
     }
-    return ret;
+    return retArray;
   }
 };
