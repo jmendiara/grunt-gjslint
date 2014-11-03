@@ -99,7 +99,7 @@ module.exports = function(grunt) {
   );
 
   function expandFiles(files) {
-    var retArray = [];
+    var retArr = [];
     if (files) {
       var allFiles = grunt.file.expand(files)
         .filter(function(filepath) {
@@ -116,19 +116,25 @@ module.exports = function(grunt) {
           return (filePath.indexOf(' ') === -1) ? filePath :
             ['"', filePath, '"'].join('');
         });
+        
+      // Currently only for Windows XP or later
       // command line will be too long in Windows
       // http://support.microsoft.com/kb/830473.
-      for (var i = 0, lineLen = 0; i < allFiles.length; ++i) {
-        var file = allFiles[i];
-        lineLen += file.length + 1;
-        if (lineLen > 7500) {
-          retArray.push(allFiles.splice(0, i).join(' '));
-          i = -1;
-          lineLen = 0;
+      if (process.platform === 'win32') {
+        for (var i = 0, lineLen = 0; i < allFiles.length; ++i) {
+          lineLen += allFiles[i].length + 1;
+          if (lineLen > 7500) {
+            retArr.push(allFiles.splice(0, i).join(' '));
+            i = -1;
+            lineLen = 0;
+          }
         }
       }
-      retArray.push(allFiles.join(' '));
+      if (allFiles.length) {
+        retArr.push(allFiles.join(' '));
+      }
     }
-    return retArray;
+    
+    return retArr;
   }
 };
