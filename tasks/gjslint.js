@@ -25,35 +25,7 @@ module.exports = function(grunt) {
         flags: []
       });
 
-      // Iterate over all specified file groups.
-      this.files.forEach(function(f) {
-        var srcs = expandFiles(f.src);
-        var doneCount = 0;
-        var isDone = true;
-        
-        var doneCheck = function(gjsDone) {
-          if (!gjsDone) {
-            isDone = false;
-          }
-          
-          if (++doneCount === srcs.length) {
-            done(isDone);
-          }
-        };
-        
-        var callback = function(err, res) {
-          var gjsDone = !(err && (err.code !== 1 || options.force));
-          doneCheck(gjsDone);
-        };
-
-        for (var i = 0, len = srcs.length; i < len; ++i) {
-          gjslint({
-            flags: options.flags,
-            reporter: options.reporter,
-            src: [srcs[i]]
-          }, callback);
-        }
-      });
+      runTask(this.files, gjslint, options, done);
     }
   );
 
@@ -66,35 +38,7 @@ module.exports = function(grunt) {
         flags: []
       });
 
-      // Iterate over all specified file groups.
-      this.files.forEach(function(f) {
-        var srcs = expandFiles(f.src);
-        var doneCount = 0;
-        var isDone = true;
-        
-        var doneCheck = function(gjsDone) {
-          if (!gjsDone) {
-            isDone = false;
-          }
-          
-          if (++doneCount === srcs.length) {
-             done(isDone);
-          }
-        };
-        
-        var callback = function(err, res) {
-          var gjsDone = !(err && (err.code !== 1 || options.force));
-          doneCheck(gjsDone);
-        };
-
-        for (var i = 0, len = srcs.length; i < len; ++i) {
-          fixjsstyle({
-            flags: options.flags,
-            reporter: options.reporter,
-            src: [srcs[i]]
-          }, callback);
-        }
-      });
+      runTask(this.files, fixjsstyle, options, done);
     }
   );
 
@@ -116,7 +60,7 @@ module.exports = function(grunt) {
           return (filePath.indexOf(' ') === -1) ? filePath :
             ['"', filePath, '"'].join('');
         });
-        
+
       // Currently only for Windows XP or later
       // command line will be too long in Windows
       // http://support.microsoft.com/kb/830473.
@@ -134,7 +78,39 @@ module.exports = function(grunt) {
         retArr.push(allFiles.join(' '));
       }
     }
-    
+
     return retArr;
+  }
+
+  function runTask(files, taskFunc, options, done) {
+    // Iterate over all specified file groups.
+    files.forEach(function(f) {
+      var srcs = expandFiles(f.src);
+      var doneCount = 0;
+      var isDone = true;
+
+      var doneCheck = function(gjsDone) {
+        if (!gjsDone) {
+          isDone = false;
+        }
+
+        if (++doneCount === srcs.length) {
+          done(isDone);
+        }
+      };
+
+      var callback = function(err, res) {
+        var gjsDone = !(err && (err.code !== 1 || options.force));
+        doneCheck(gjsDone);
+      };
+
+      for (var i = 0, len = srcs.length; i < len; ++i) {
+        taskFunc({
+          flags: options.flags,
+          reporter: options.reporter,
+          src: [srcs[i]]
+        }, callback);
+      }
+    });
   }
 };
