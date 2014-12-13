@@ -38,7 +38,7 @@ grunt.initConfig({
       src: '<%= jshint.all %>'
     }
   },
-  fixjstyle: {
+  fixjsstyle: {
     options: {
       flags: [
         '--disable 220' //ignore error code 220 from gjslint
@@ -91,7 +91,7 @@ grunt.initConfig({
       src: ['test/*.js'],
     }
   },
-  fixjstyle: {
+  fixjsstyle: {
     options: {
       flags: [
           '--flagfile .fixjssstylerc' //use flag file
@@ -117,17 +117,11 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-* v0.1.5
-  * added fixjsstyle task
-
-* v0.1.4
-  * bug fixing in filenames with whitespaces. Thanks to @moelders
-
-* v0.1.3 
-    * bug fixing. Thanks to @dcantelar
-
-* v0.1.0 
-  * First version
+* v0.1.6: Huge amount of files in windows support. @ganxiyun 
+* v0.1.5: added fixjsstyle task
+* v0.1.4: bug fixing in filenames with whitespaces. Thanks to @moelders
+* v0.1.3: bug fixing. Thanks to @dcantelar
+* v0.1.0: First version
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jmendiara/grunt-gjslint/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
