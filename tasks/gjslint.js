@@ -106,6 +106,7 @@ module.exports = function(grunt) {
 
       for (var i = 0, len = srcs.length; i < len; ++i) {
         taskFunc({
+          pythonPath: options.pythonPath,
           flags: options.flags,
           reporter: options.reporter,
           src: [srcs[i]]
