@@ -89,6 +89,11 @@ module.exports = function(grunt) {
       var doneCount = 0;
       var isDone = true;
 
+      if (srcs.length === 0) {
+        done(isDone);
+        return;
+      }
+
       var doneCheck = function(gjsDone) {
         if (!gjsDone) {
           isDone = false;
